@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button type="button" class="signInPopup">signIn</button>
+    <button type="button" class="signUpPopup">signUp</button>
+    <button type="button" class="signOut">Logout</button>
+    <p class="para">If a person signIn then he can see below data.</p>
+    <h2></h2>
+    <div class="container1">
+      <form>
+        <input
+          type="email"
+          class="email"
+          placeholder="Enter Your email address"
+          required
+        />
+        <input
+          type="password"
+          class="password"
+          placeholder="Enter Your password"
+          required
+        />
+        <input type="button" class="submit signIn1" value="Submit" />
+        <p class="form-text">OR</p>
+        <input
+          type="button"
+          class="googlesignin signIn2"
+          value="SignIn with google"
+        />
+      </form>
+    </div>
+    <div class="container2">
+      <form>
+        <input
+          type="email"
+          class="email"
+          placeholder="Enter Your email address"
+          required
+        />
+        <input
+          type="password"
+          class="password"
+          placeholder="Enter Your password"
+          required
+        />
+        <input type="button" class="submit signUp1" value="Submit" />
+        <p class="form-text">OR</p>
+        <input
+          type="button"
+          class="googlesignin signUp2"
+          value="SignUp with google"
+        />
+      </form>
+    </div>
+    <div class="container">
+      <p class="para">
+        Hi there my name is Muhammad Owais & I am a frontend developer. Today I
+        wanna talk about my chat app . Here I am working on my chat app that how
+        should my chat app look & work. So , first of all I am trying to figure
+        out what type of functionality should I include & what UI/UX strategy
+        should I develop or follow. So here I am requesting to my respectable
+        fellow to give me honest feedback about my app that which feature of the
+        app are awesome & which part of the app should I improve thank.
+      </p>
+      <div class="input-div">
+        <textarea
+          name="commit"
+          id="commit"
+          class="user-text"
+          cols="56"
+          rows="6"
+          placeholder="Enter your commit here"
+        ></textarea>
+        <button type="button" class="commit-btn">Submit</button>
+      </div>
+      <ul class="commit-list">
+        <!-- <li>
+          <p class="commit-text">
+            <span class="user-name">Owais: </span>
+            your app is working awesome brother.
+          </p>
+        </li> -->
+      </ul>
+    </div>
+    <script type="module" src="bundle.js"></script>
+  </body>
+</html>
