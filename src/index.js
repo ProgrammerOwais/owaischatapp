@@ -40,7 +40,7 @@ let signUpPopup = document.querySelector(".signUpPopup");
 let signUpDiv = document.querySelector(".container2");
 let closeSignIn = document.querySelector(".closeSignIn");
 let closeSignUp = document.querySelector(".closeSignUp");
-console.log(" really 8");
+console.log(" really 9");
 closeSignIn.addEventListener("click", () => {
   console.log("it works");
   signInDiv.classList.toggle("container1-toggle");
@@ -564,11 +564,15 @@ onAuthStateChanged(auth, async (user) => {
           input2.style.display = "none";
           send.style.display = "none";
           editBtn.addEventListener("click", () => {
-            input2.value = paraText.innerText;
-            input2.style.display = "inline";
-            send.style.display = "inline";
-            paraText.style.display = "none";
-            editBtn.style.display = "none";
+            if (user.email == docmt.data().userEmail) {
+              input2.value = paraText.innerText;
+              input2.style.display = "inline";
+              send.style.display = "inline";
+              paraText.style.display = "none";
+              editBtn.style.display = "none";
+            } else {
+              alert("You don't have a permission to edit other users message");
+            }
           });
           send.addEventListener("click", async () => {
             let time = new Date();
@@ -730,11 +734,17 @@ onAuthStateChanged(auth, async (user) => {
                     input2.style.display = "none";
                     send.style.display = "none";
                     editBtn.addEventListener("click", () => {
-                      input2.value = paraText.innerText;
-                      input2.style.display = "inline";
-                      send.style.display = "inline";
-                      paraText.style.display = "none";
-                      editBtn.style.display = "none";
+                      if (user.email == sDocs.data().userEmail) {
+                        input2.value = paraText.innerText;
+                        input2.style.display = "inline";
+                        send.style.display = "inline";
+                        paraText.style.display = "none";
+                        editBtn.style.display = "none";
+                      } else {
+                        alert(
+                          "You don't have a permission to edit other users message"
+                        );
+                      }
                     });
                     send.addEventListener("click", async () => {
                       let time = new Date();

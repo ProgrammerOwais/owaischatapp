@@ -522,8 +522,11 @@ li {
 .commit-btn2:focus {
   cursor: pointer;
 }
-.editBtn:focus,
+
 .commit-btn2:focus {
+  box-shadow: 1px 2px 5px rgb(49, 48, 48);
+}
+.editBtn:active {
   box-shadow: 1px 2px 5px rgb(49, 48, 48);
 }
 /* .commit-btn2 {
@@ -537,6 +540,7 @@ li {
   font-size: 1.2rem;
   color: var(--ordinaryColor);
   margin-right: 0.1rem;
+  border-radius: 0.3rem;
 }
 
 .replyBtn {
@@ -872,7 +876,7 @@ li {
   .steps,
   strong,
   .para {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
   .topic-container {
     flex-direction: column;
@@ -915,6 +919,15 @@ li {
     border-radius: 0.2rem;
     bottom: 3px;
   }
+  .editBtn {
+    right: 3.8%;
+  }
+  .current-time {
+    right: 11%;
+  }
+  .current-time2 {
+    right: 12.5%;
+  }
 
   .input3 {
     position: relative;
@@ -932,6 +945,20 @@ li {
     border-radius: 0.25rem;
     font-size: 0.9rem;
     width: 15%;
+  }
+  .editInput {
+    width: 70%;
+    height: auto;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+    color: var(--ordinaryColor);
+    margin-right: 0.1rem;
+  }
+  .commit-btn2 {
+    font-size: 0.9rem;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
   }
 
   .commit-text {
@@ -955,10 +982,7 @@ li {
   .para-text {
     width: 85%;
   }
-  .current-time,
-  .current-time2 {
-    right: 10%;
-  }
+
   .child-container {
     width: 95%;
     height: 200px;
