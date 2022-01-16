@@ -3,92 +3,180 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="author" content="Muhammad Owais" />
+     <meta name="description" content="This web-app is specially designed for BSCS-1 M-1 class. 
+        In this app we will post different IT related topics & will discuss further about the topic
+         in commit section. The topics will be awesome & well worth information for students from authentic resources." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./library.jpg">
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
-    <button type="button" class="signInPopup">signIn</button>
-    <button type="button" class="signUpPopup">signUp</button>
-    <button type="button" class="signOut">Logout</button>
-    <p class="para">If a person signIn then he can see below data.</p>
-    <h2></h2>
-    <div class="container1">
-      <form>
-        <input
-          type="email"
-          class="email"
-          placeholder="Enter Your email address"
-          required
-        />
-        <input
-          type="password"
-          class="password"
-          placeholder="Enter Your password"
-          required
-        />
-        <input type="button" class="submit signIn1" value="Submit" />
-        <p class="form-text">OR</p>
-        <input
-          type="button"
-          class="googlesignin signIn2"
-          value="SignIn with google"
-        />
-      </form>
-    </div>
-    <div class="container2">
-      <form>
-        <input
-          type="email"
-          class="email"
-          placeholder="Enter Your email address"
-          required
-        />
-        <input
-          type="password"
-          class="password"
-          placeholder="Enter Your password"
-          required
-        />
-        <input type="button" class="submit signUp1" value="Submit" />
-        <p class="form-text">OR</p>
-        <input
-          type="button"
-          class="googlesignin signUp2"
-          value="SignUp with google"
-        />
-      </form>
-    </div>
-    <div class="container">
-      <p class="para">
-        Hi there my name is Muhammad Owais & I am a frontend developer. Today I
-        wanna talk about my chat app . Here I am working on my chat app that how
-        should my chat app look & work. So , first of all I am trying to figure
-        out what type of functionality should I include & what UI/UX strategy
-        should I develop or follow. So here I am requesting to my respectable
-        fellow to give me honest feedback about my app that which feature of the
-        app are awesome & which part of the app should I improve thank.
-      </p>
-      <div class="input-div">
-        <textarea
-          name="commit"
-          id="commit"
-          class="user-text"
-          cols="56"
-          rows="6"
-          placeholder="Enter your commit here"
-        ></textarea>
-        <button type="button" class="commit-btn">Submit</button>
+    <header>
+      <div class="header-container responsive-sec">
+        <div class="user-info">
+          <a href="https://github.com/ProgrammerOwais?tab=repositories" class="github-link">
+            <img src="./library.jpg" alt="github Icon" class="github"
+          /></a>
+          <h3 class="head-name">BSCS-1 MORNING-1</h3>
+        </div>
+        <div class="hamburger">
+          <div class="hamburger-menu"></div>
+        </div>
+        <div class="btns-group">
+          <button type="button" class="signInPopup">SignIn</button>
+          <button type="button" class="signUpPopup">SignUp</button>
+          <button type="button" class="signOut">Logout</button>
+          <button type="button" class="howTo">How_To</button>
+          <div class="project-div">
+            <button type="button" class="projects">Projects</button>
+            <div class="nav-links-div">
+              <a href="https://programmerowais.github.io/OwaisPortfolio.github.io/" class="nav-links">My Portfolio</a>
+              <a href="https://programmerowais.github.io/APIs.github.io/" class="nav-links">APIs project</a>
+              <a href="https://programmerowais.github.io/blogr-page.github.io/ " class="nav-links">Blogr's Page</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <ul class="commit-list">
-        <!-- <li>
-          <p class="commit-text">
-            <span class="user-name">Owais: </span>
-            your app is working awesome brother.
+    </header>
+    <main>
+      <div class="chatFresh-div">
+        <button class = "fresh" >Fresh</button>
+        <button class="chat" > <a class="chat-link" href  ="#commit-sec">Chat</a></button>
+      </div>
+      <div class="container1">
+        <form>
+          <input
+            type="email"
+            class="signInEmail"
+            placeholder="Enter Your email address"
+            required
+          />
+          <input
+            type="password"
+            class="signInPassword"
+            placeholder="Enter Your password"
+            required
+          />
+          <input type="submit" class="signInBtn" value="Submit" />
+          <p class="form-text">OR</p>
+          <input
+            type="button"
+            class="googlesignin signIn2"
+            value="SignIn with google"
+          />
+          <input type="button" class="closeSignIn" value="X">
+        </form>
+      </div>
+      <div class="container2">
+        <form>
+          <input
+            type="email"
+            class="signUpEmail"
+            placeholder="Enter Your email address"
+            required
+          />
+          <input
+            type="password"
+            class="signUpPassword"
+            placeholder="Enter Your password"
+            required
+          />
+          <input type="submit" class="signUpBtn" value="Submit" />
+          <input type="button" class="closeSignUp" value="X">
+          <!-- <p class="form-text">OR</p>
+          <input
+            type="button"
+            class="googlesignin signUp2"
+            value="SignUp with google"
+          /> -->
+        </form>
+      </div>
+      <div class="responsive-sec">
+        <h3 class="confirmation"></h3>
+      </div>
+      <section class="container responsive-sec">
+       <div class="topic-container">
+         <div class="text-area">
+          <h2>Topic discussion chat app</h2>
+          <p class="para">
+            Hi there, my name is Muhammad Owais & I am a frontend developer. Today I
+            wanna discuss about my chat app which I was working on for a while . I
+            created this app for my class , the purpose of creating this app is to
+            share a knowledge which I have or giving
+            <strong>"Pro Topics / Articles"</strong>
+            reference with a little bit information which I think is very necessary
+            for a computer Science student. In the app , I will post a topic which
+            will be related to current technology & will discuss why this is so much
+            important & what will be the authentic/standard way to learn more about
+            this.
+            <img src="./journey.jpg" class="img3" alt="journey">
+             
+             There are a lot more to discuss but the purpose of this app is to
+            make a IT students too informative so that he/she can know that where
+            the technology is going & can decide which field of "IT" is very best
+            for him/her. From time to time we will post different Topics related to
+            IT. And one of the most important thing , you can ask any question
+            related to topic or if you have already have a knowledge about given
+            topic than you can share with us more in the comment section.
+            
+            <img src="./journey2.jpg" class="img3" alt="journey">
+            <!-- should my chat app look & work. So , first of
+            all I am trying to figure out what type of functionality should I
+            include & what UI/UX strategy should I develop or follow. So here I am
+            requesting to my respectable fellow to give me honest feedback about my
+            app that which feature of the app are awesome & which part of the app
+            should I improve thank. -->
           </p>
-        </li> -->
-      </ul>
-    </div>
+          <h2>How To Use This App</h2>
+          <p class="para">
+            So , how should you use this web app , this is very easy , first of all
+            you can read the topic but in order to give any comments ,see other
+            people comments, ask any question or give more info about the topic ,
+            you will need to create a account in here or logIn with google.
+            So here are the steps to follow.
+            <ul class="instruction-list">
+              <strong>There are two methods to logIn First is "GoogleSignIn"</strong>
+              <li class="steps">At the top in the navbar click on SignIn button </li>
+              <li class="steps">A popup will open-up click on "signIn with google" button at the bottom of pop-up</li>
+              <strong>In this way you can easily logIn your account with google. The other method is "email/password".</strong>
+              <li class="steps">For this first of all click on "SignUp" button in the navbar , give valid email & password</li>
+              <li class="steps">After submission you will be successfully loggedIn</li>
+              <li class="steps">And whenever you will need to signIn you can use this email/password by clicking on "SignIn" button , 
+                enter email/password in the pop-up box & click on "Submit" button.</li>
+            </ul>
+          </p>
+         </div>
+         <div class="photo-area">
+          <img src="./journey.jpg" class="img2" alt="journey">
+          <img src="./journey2.jpg" class="img2" alt="journey">
+         </div>
+       </div>
+        <hr>
+        <div class="input-div" id="commit-sec">
+          <textarea
+            name="commit"
+            id="commit"
+            class="user-text"
+            cols="56"
+            rows="6"
+            placeholder="Enter your commit here"
+          ></textarea>
+          <button type="button" class="commit-btn">Send</button>
+        </div>
+        <ul class="commit-list">
+          <!-- <li>
+            <p class="commit-text">
+              <span class="user-name">Owais: </span>
+              your app is working awesome brother.
+            </p>
+          </li> -->
+        </ul>
+      </section>
+      <div class="commit-section responsive-sec">
+      </div>
+    </main>
     <script type="module" src="bundle.js"></script>
   </body>
 </html>

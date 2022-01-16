@@ -5,47 +5,262 @@ html {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
+}
+:root {
+  --bodyColor: rgba(108, 101, 138, 0.322);
+  /* --bodyColor: yellow; */
+  --primaryHeading: rgb(105, 101, 101);
+  /* --primaryHeading: var(--headerBg); */
+  --headerBg: rgba(54, 52, 52, 0.562);
+  /* --headerBg: rgb(12, 138, 241); */
+  /* --headerBg: blue; */
+  --textColor: rgba(12, 12, 12, 0.888);
+  --borderBg: rgba(27, 26, 26, 0.116);
+  --ordinaryColor: rgba(12, 12, 12, 0.888);
 }
 body {
-  color: black;
+  background-color: var(--bodyColor);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-/* .container {
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
+.chatFresh-div {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 5%;
+  right: 2%;
+}
+
+.fresh {
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: var(--headerBg);
+  color: white;
+  border-radius: 0.2rem;
+}
+.chat {
+  padding: 0;
+  background-color: var(--headerBg);
+}
+.chat-link {
+  background-color: transparent;
+  text-decoration: none;
+  color: white;
+  /* border: 1px solid red; */
+  font-size: 1.2rem;
+  padding: 0.3rem 0.5rem;
+}
+
+header {
+  background-color: var(--headerBg);
+  height: 80px;
+  width: 100%;
+  box-shadow: 1px 1px 5px var(--ordinaryColor);
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.responsive-sec {
+  /* border: 1px solid red; */
+  width: 1250px;
+  margin: 0 auto;
+}
+.user-info {
+  width: 30%;
+  /* border: 1px solid white; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.github-link {
+  text-decoration: none;
+  /* border: 1px solid red; */
+  width: 100%;
+  max-width: 70px;
+  border-radius: 50%;
+}
+.github {
+  width: 100%;
+  max-width: 70px;
+  box-shadow: 1px 1px 4px var(--primaryHeading),
+    -1px -1px 4px var(--primaryHeading);
+  border-radius: 50%;
+}
+.head-name {
+  font-size: 2.2rem;
+  color: white;
+}
+.btns-group {
+  width: 38%;
+  height: 80px;
+  /* border: 1px solid white; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hamburger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  /* display: flex; */
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hamburger-menu {
+  align-self: center;
+  width: 30px;
+  height: 1.6px;
+  border-radius: 25px;
+  background-color: white;
+  transition: 0.3s all;
+}
+
+.hamburger-menu::before,
+.hamburger-menu::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 1.6px;
+  border-radius: 25px;
+  background-color: white;
+  transition: all 0.3s ease-out;
+}
+
+.hamburger-menu::before {
+  transform: translateY(-9px);
+}
+
+.hamburger-menu::after {
+  transform: translateY(9px);
+}
+
 .signInPopup,
 .signUpPopup,
-.signOut {
-  margin-top: 1rem;
+.signOut,
+.howTo,
+.projects {
+  /* margin-top: 1rem; */
   font-size: 1.2rem;
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.6rem;
   color: white;
+  /* color: rgb(54, 52, 52); */
   background-color: blue;
+  background-color: var(--bodyColor);
+  background-color: rgba(182, 180, 189, 0.322);
   border-radius: 0.3rem;
-  border: 1px solid white;
+  border: 1px solid transparent;
   outline: none;
+  margin-right: 0.3rem;
 }
 .signInPopup:hover,
 .signUpPopup:hover,
-.signOut:hover {
+.signOut:hover,
+.howTo:hover,
+.projects:hover {
   cursor: pointer;
   background-color: hsl(240, 100%, 60%);
+  background-color: var(--bodyColor);
+  background-color: hsla(253, 6%, 62%, 0.322);
+  border: 1px solid white;
+}
+.signInPopup:active,
+.signUpPopup:active,
+.signOut:active,
+.howTo:active {
+  box-shadow: 1px 1px 5px hsl(255, 4%, 18%);
+  border: 1px solid white;
+}
+/********************************* main section ************************/
+.confirmation {
+  font-size: 1.2rem;
+  color: rgb(236, 79, 79);
+}
+
+hr {
+  margin-bottom: 1rem;
+}
+h2 {
+  text-transform: capitalize;
+  /* border: 1px solid red; */
+  color: var(--primaryHeading);
+  font-size: 2rem;
+  margin-bottom: -0.3rem;
+  padding-bottom: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.project-div {
+  position: relative;
+  top: 0.25rem;
+  /* border: 1px solid red; */
+  padding-bottom: 0.5rem;
+}
+.nav-links-div {
+  position: absolute;
+  top: 60px;
+  right: -30px;
+  width: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgb(54, 52, 52);
+  /* background-color: transparent; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5), -1px -1px 5px rgba(0, 0, 0, 0.3);
+  display: none;
+  opacity: 0.8;
+  transition: opacity 400ms;
+}
+.project-div:hover .nav-links-div {
+  /* opacity: 0.8; */
+  display: flex;
+}
+.project-div.sub-projects .nav-links-div {
+  display: flex;
+}
+.nav-links {
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: white;
+  border-bottom: 1px solid transparent;
+}
+.nav-links:active,
+.nav-links:hover {
+  border-bottom: 1px solid white;
+  color: yellow;
 }
 .container1,
 .container2 {
   display: none;
-  width: 60%;
+  width: 50%;
   height: auto;
   position: absolute;
-  top: 0%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: all 300ms;
+}
+.closeSignIn,
+.closeSignUp {
+  position: absolute;
+  top: -1rem;
+  right: 0.2rem;
+  background-color: transparent;
+  font-size: 1.2rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 .container1-toggle,
 .container2-toggle {
@@ -58,31 +273,42 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.219);
+  backdrop-filter: blur(5px);
   padding: 2rem 0rem;
-  width: 90%;
+  width: 100%;
   height: auto;
   margin: 1rem auto;
   border-radius: 0.5rem;
-  box-shadow: 1px 1px 0px 1px rgb(128, 124, 124),
-    -1px -1px 0px 1px rgb(129, 126, 126);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.315);
 }
 input {
   margin-top: 1rem;
 }
-.email,
-.password {
+.signInEmail,
+.signInPassword,
+.signUpEmail,
+.signUpPassword {
   padding: 0.2rem 0.4rem;
   font-size: 1rem;
   height: 2.7rem;
   width: 60%;
   border-radius: 0.3rem;
-  border: 1px solid salmon;
+  border: 1px solid rgba(107, 104, 104, 0.515);
+  outline: none;
 }
-.submit {
+.signInEmail:focus,
+.signInPassword:focus,
+.signUpEmail:focus,
+.signUpPassword:focus {
+  border: 2px solid var(--headerBg);
+}
+.signInBtn,
+.signUpBtn {
   padding: 0.3rem 1rem;
   width: 60%;
   color: rgb(241, 66, 203);
+  color: green;
   font-size: 1.2rem;
 }
 .form-text {
@@ -93,25 +319,69 @@ input {
   padding: 0.3rem 1rem;
   width: 60%;
   color: rgb(241, 66, 203);
+  color: green;
   font-size: 1.2rem;
+}
+.googlesignin,
+.signInBtn,
+.signUpBtn {
+  cursor: pointer;
 }
 .container {
-  width: 1200px;
+  /* width: 1250px; */
   margin: 2rem auto;
-  border: 1px solid rgba(27, 26, 26, 0.116);
+  margin-top: 0.2rem;
+  border: 1px solid var(--borderBg);
+  /* border: 1px solid yellow; */
+}
+.topic-container {
+  display: flex;
+  justify-content: space-between;
+}
+.text-area {
+  width: 60%;
+}
+.photo-area {
+  width: 38%;
+}
+.img2 {
+  width: 100%;
+  border-radius: 5%;
+  max-width: 500px;
+  margin-top: 2.7rem;
+}
+.img3 {
+  display: none;
 }
 .para {
-  /* border: 1px solid black; */
-  font-size: 1.2rem;
+  /* border: 1px solid var(--ordinaryColor); */
+  font-size: 1.4rem;
   margin: 0.5rem auto;
   margin-top: 0.1rem;
   padding: 0.5rem;
 }
-.para::first-line {
-  font-weight: bold;
+.instruction-list {
+  padding-left: 1.5rem;
+  width: 90%;
+  list-style-type: lower-roman;
 }
+.steps,
+strong {
+  padding: 0;
+  padding-bottom: 0.2rem;
+  font-size: 1.2rem;
+}
+strong {
+  font-weight: 550;
+}
+.steps,
+strong,
+.para {
+  color: var(--textColor);
+}
+
 .input-div {
-  border: 1px solid rgba(27, 26, 26, 0.116);
+  border: 1px solid var(--borderBg);
   margin: 0.5rem;
   margin-left: 0;
   position: relative;
@@ -124,20 +394,26 @@ input {
   padding: 0.5rem;
   border: none;
   outline: none;
+  background-color: rgb(235, 236, 211);
 }
 .commit-btn {
   font-size: 1rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  background-color: green;
+  /* background-color: green; */
+  background-color: var(--headerBg);
+
   color: white;
   position: absolute;
   right: 0%;
-  bottom: 1%;
-  border: 1px solid rgba(27, 26, 26, 0.116);
+  bottom: 3%;
+  border: 1px solid var(--borderBg);
 }
-.commit-btn:hover,
-.commit-btn:focus {
+.commit-btn:hover {
+  cursor: pointer;
+  box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.7);
+}
+.commit-btn:active {
   cursor: pointer;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
@@ -152,13 +428,13 @@ li {
 }
 .commit-text {
   position: relative;
-  border: 1px solid rgba(27, 26, 26, 0.116);
+  border: 1px solid var(--borderBg);
   font-size: 1.1rem;
   width: 50%;
   border-radius: 0.5rem;
   padding: 0.5rem;
-  color: rgb(34, 31, 31);
-  background-color: rgba(27, 26, 26, 0.116);
+  color: rgba(34, 31, 31, 0.9);
+  background-color: var(--borderBg);
   font-family: "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 }
 .commit-text2 {
@@ -185,21 +461,21 @@ li {
 } */
 .deleteBtn:hover,
 .deleteBtn:focus {
-  color: black;
-  border: 0.5px solid black;
+  color: var(--ordinaryColor);
+  border: 0.5px solid var(--ordinaryColor);
 }
 .user-name {
   display: block;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.7);
+  color: var(--ordinaryColor);
   font-size: 0.9rem;
 }
 
 .editBtn {
   border: none;
-  background-color: rgba(27, 26, 26, 0.116);
+  background-color: var(--borderBg);
   font-size: 12px;
-  color: black;
+  color: var(--ordinaryColor);
   padding: 0.3rem 0.4rem;
   padding-top: 0.1rem;
   border-radius: 0.3rem;
@@ -210,7 +486,7 @@ li {
 }
 .current-time {
   font-size: 12px;
-  color: black;
+  color: var(--ordinaryColor);
   padding: 0.3rem 0.4rem;
   padding-top: 0.1rem;
   border-radius: 0.3rem;
@@ -221,7 +497,7 @@ li {
 }
 .current-time2 {
   font-size: 12px;
-  color: black;
+  color: var(--ordinaryColor);
   padding: 0.3rem 0.4rem;
   padding-top: 0.1rem;
   border-radius: 0.3rem;
@@ -231,10 +507,10 @@ li {
   background-color: transparent;
 }
 .commit-btn2 {
-  border: 1px solid black;
+  border: 1px solid var(--ordinaryColor);
   background-color: transparent;
   font-size: 18px;
-  color: black;
+  color: var(--ordinaryColor);
   padding: 0.2rem 0.3rem;
   border-radius: 0.3rem;
 }
@@ -259,51 +535,55 @@ li {
   width: 70%;
   height: 30px;
   font-size: 1.2rem;
-  color: black;
+  color: var(--ordinaryColor);
   margin-right: 0.1rem;
 }
 
 .replyBtn {
   cursor: pointer;
-  border: 0.5px solid black;
+  border: 0.5px solid var(--ordinaryColor);
   font-size: 10px;
-  color: black;
+  color: var(--ordinaryColor);
   padding: 0.3rem 0.4rem;
   border-radius: 0.3rem;
   position: absolute;
   bottom: 0.2%;
-  right: 0.5%;
+  right: 0.1%;
   background-color: transparent;
 }
 .minimize {
   position: absolute;
   top: 0.2%;
-  right: 0.2%;
+  right: 0.8%;
   font-size: 12px;
-  background-color: rgba(27, 26, 26, 0.116);
-  color: black;
-  border: 1px solid black;
+  font-weight: bold;
+  background-color: var(--borderBg);
+  color: var(--ordinaryColor);
+  border: 1px solid var(--ordinaryColor);
   border-radius: 20%;
-  width: 35px;
+  width: 20px;
+  padding: 2px;
   cursor: pointer;
   text-align: center;
 }
 .child-container {
   display: none;
   position: relative;
-  border: 1px solid rgb(49, 48, 48);
+  /* border: 1px solid rgb(49, 48, 48); */
   width: 45%;
   height: 250px;
-  margin-top: 0.1rem;
+  margin-top: 0rem;
   border-radius: 0.3rem;
   overflow-y: auto;
+  box-shadow: inset 1px 1px 5px var(--bodyColor),
+    inset -1px 0px 5px var(--bodyColor);
 }
 .child-container-toggle {
   display: block;
 }
 
 .input3 {
-  border: 2px solid black;
+  border: 2px solid var(--ordinaryColor);
   border-radius: 0.3rem;
   font-size: 1.2rem;
   width: 80%;
@@ -312,9 +592,381 @@ li {
 }
 .subSend {
   background-color: green;
+  background-color: rgb(121, 119, 124);
   color: white;
   padding: 0.2rem;
   border-radius: 0.5rem;
   font-size: 1.1rem;
   width: 15%;
+}
+@media (max-width: 1300px) {
+  .responsive-sec {
+    /* border: 1px solid red; */
+    width: 95%;
+  }
+  .user-info {
+    /* border: 1px solid red; */
+    width: 40%;
+    justify-content: flex-start;
+  }
+  .github-link {
+    margin-right: 0.3rem;
+  }
+  .head-name {
+    font-size: 1.9rem;
+  }
+  .btns-group {
+    /* border: 1px solid yellow; */
+    width: 50%;
+    justify-content: flex-end;
+  }
+  .signInPopup,
+  .signOut,
+  .signUpPopup,
+  .projects,
+  .howTo {
+    margin-right: 0.3rem;
+  }
+  /******************* main sec ********************/
+  .input-div {
+    width: 60%;
+  }
+}
+@media (max-width: 900px) {
+  header {
+    height: 65px;
+  }
+  .user-info {
+    width: 50%;
+  }
+  .github-link {
+    max-width: 50px;
+  }
+  .github {
+    max-width: 50px;
+  }
+  .head-name {
+    font-size: 1.7rem;
+  }
+  .btns-group {
+    height: 65px;
+  }
+  .closeSignIn,
+  .closeSignUp {
+    font-size: 1rem;
+  }
+  .signInPopup,
+  .signUpPopup,
+  .signOut,
+  .projects,
+  .howTo {
+    padding: 0.6rem 0.8rem;
+    font-size: 1.1rem;
+  }
+  .current-time {
+    right: 8%;
+  }
+  .current-time2 {
+    right: 10%;
+  }
+  .confirmation {
+    font-size: 1rem;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
+  .para {
+    font-size: 1.2rem;
+  }
+  .steps,
+  strong {
+    font-size: 1rem;
+  }
+
+  .container1,
+  .container2 {
+    width: 70%;
+  }
+}
+@media (max-width: 762px) {
+  body,
+  html {
+    overflow-x: hidden;
+  }
+  header {
+    height: 65px;
+  }
+  .header-container {
+    height: 65px;
+    position: relative;
+    align-items: center;
+  }
+  .head-name {
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+  .btns-group {
+    /* display: none; */
+    position: absolute;
+    left: 120%;
+    top: 70px;
+    width: 100vw;
+    height: 60vh;
+    border: none;
+    border-radius: 3%;
+    background-color: rgba(0, 0, 0, 0.775);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    justify-content: center;
+    align-items: center;
+    transition: all 400ms;
+  }
+  .hamburger {
+    display: flex;
+    /* border: 1px solid blue; */
+  }
+  .hamburger.clicked .hamburger-menu::before {
+    transform: translateY(0) rotate(45deg);
+  }
+
+  .hamburger.clicked .hamburger-menu::after {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  .hamburger.clicked .hamburger-menu {
+    transform: rotate(360deg);
+    background-color: transparent;
+  }
+  .hamburger.clicked + .btns-group {
+    left: -2.5%;
+    z-index: 10;
+    /* top: 0; */
+    /* bottom: 0; */
+  }
+  .container1,
+  .container2 {
+    width: 95%;
+    z-index: 100;
+  }
+
+  .signInEmail,
+  .signInPassword,
+  .signUpEmail,
+  .signUpPassword {
+    font-size: 0.9rem;
+    width: 80%;
+    border-radius: 5px;
+    padding: 0.1rem 0.4rem;
+    height: 2.3rem;
+  }
+  .signInBtn,
+  .signUpBtn,
+  .googlesignin {
+    font-size: 0.9rem;
+    width: 80%;
+  }
+  .closeSignIn,
+  .closeSignUp {
+    font-size: 0.9rem;
+  }
+  .signInPopup,
+  .signOut,
+  .signUpPopup,
+  .projects,
+  .howTo {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0.2rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    box-shadow: none;
+    border-radius: 0;
+    letter-spacing: 0.5px;
+  }
+  .signInPopup:hover,
+  .signUpPopup:hover,
+  .signOut:hover,
+  .howTo {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+  }
+  .signInPopup:focus,
+  .signUpPopup:focus,
+  .signOut:focus,
+  .howTo:focus {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+  }
+  .signInPopup:active,
+  .signUpPopup:active,
+  .signOut:active,
+  .howTo:active {
+    box-shadow: none;
+    border: none;
+  }
+  .projects:focus {
+    background-color: transparent;
+    border: none;
+  }
+
+  .project-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.2rem;
+  }
+  .project-div:hover .nav-links-div {
+    display: none;
+  }
+  .project-div.sub-projects .projects {
+    background-color: transparent;
+    border-bottom: 1px solid white;
+  }
+  .project-div.sub-projects .nav-links-div {
+    /* border: 1px solid red; */
+    box-shadow: none;
+    padding: 0;
+    position: absolute;
+    top: 35px;
+    left: 0px;
+    width: calc(100% + 50px);
+    display: flex;
+    opacity: 0.8;
+    background-color: transparent;
+    background-color: black;
+  }
+  .nav-links {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+  }
+  /************************* main sec *************************/
+  .chatFresh-div {
+    z-index: 1;
+    width: 100px;
+    right: 3%;
+    bottom: 3%;
+  }
+  .chat-link,
+  .fresh {
+    font-size: 0.9rem;
+    padding: 0.2rem;
+  }
+  .confirmation {
+    font-size: 0.9rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+    padding-left: 0.2rem;
+    margin-bottom: -0.6rem;
+  }
+  .steps,
+  strong,
+  .para {
+    font-size: 0.9rem;
+  }
+  .topic-container {
+    flex-direction: column;
+  }
+  .photo-area {
+    display: none;
+  }
+  .text-area {
+    width: 100%;
+  }
+  .img2 {
+    display: none;
+  }
+  .img3 {
+    width: 100%;
+    border-radius: 3%;
+    display: block;
+    margin: 0.2rem auto;
+    max-width: 500px;
+    /* border: 2px solid red; */
+  }
+  .input-div {
+    width: 100%;
+  }
+  li {
+    margin-top: 0.2rem;
+  }
+  .user-text {
+    width: 100%;
+    font-size: 0.9rem;
+    height: 50px;
+    padding-right: 3.2rem;
+    /* border: 2px solid red; */
+  }
+  .commit-btn {
+    /* border: 2px solid red; */
+    height: auto;
+    font-size: 0.9rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    bottom: 3px;
+  }
+
+  .input3 {
+    position: relative;
+    top: 5px;
+    left: 7px;
+    font-size: 0.9rem;
+    height: auto;
+    width: 75%;
+  }
+  .subSend {
+    position: relative;
+    top: 5px;
+    left: 7px;
+    padding: 0.2rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    width: 15%;
+  }
+
+  .commit-text {
+    width: 100%;
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+    padding: 0.3rem;
+  }
+  .commit-text2 {
+    width: 95%;
+    position: relative;
+    top: 8px;
+    /* border: 2px solid red; */
+  }
+  .user-name {
+    display: block;
+    font-weight: 600;
+    color: var(--ordinaryColor);
+    font-size: 0.85rem;
+  }
+  .para-text {
+    width: 85%;
+  }
+  .current-time,
+  .current-time2 {
+    right: 10%;
+  }
+  .child-container {
+    width: 95%;
+    height: 200px;
+  }
+  .child-container-toggle {
+    display: block;
+  }
+  .child-container .para-text {
+    width: 95%;
+  }
 }
