@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+    <meta name="author" content="Muhammad Owais" />
+    <meta name="description" content="In this page , you will learn how to use this app,
+    its very simple just a few easy steps to follow & than you can easily access all the features
+    of web" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="./library.jpg">
+    <title>BSCS-1 How_To</title>
+  </head>
+  <header>
+    <div class="header-container responsive-sec">
+      <div class="user-info">
+        <a href="https://github.com/ProgrammerOwais?tab=repositories" class="github-link">
+          <img src="./library.jpg" alt="github Icon" class="github"
+        /></a>
+        <h3 class="head-name">BSCS-1 MORNING-1</h3>
+      </div>
+      <div class="hamburger">
+        <div class="hamburger-menu"></div>
+      </div>
+      <div class="btns-group">
+        <a class="home-link" href="./index.html"><button type="button" class="signInPopup">Home</button></a>
+        <a class="how-link" href="./how_to.html"><button type="button" class="howTo howTo-active">How_To</button></a>
+        <div class="project-div">
+          <button type="button" class="projects">Projects</button>
+          <div class="nav-links-div">
+            <a href="https://programmerowais.github.io/OwaisPortfolio.github.io/" class="nav-links">My Portfolio</a>
+            <a href="https://programmerowais.github.io/APIs.github.io/" class="nav-links">APIs project</a>
+            <a href="https://programmerowais.github.io/blogr-page.github.io/ " class="nav-links">Blogr's Page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+      <div class="howTo-sec responsive-sec">
+        <h2>How To Use This App</h2>
+        <p class="para">
+          So , how should you use this web app , this is very easy , first of all
+          you can read the topic but in order to give any comments ,see other
+          people comments, ask any question or give more info about the topic ,
+          you will need to create a account in here or logIn with google.
+          So here are the steps to follow.
+          <strong class="strong">There are two methods to logIn First is "GoogleSignIn"</strong>
+          <ul class="instruction-list howTo-list">
+            
+            <li class="steps">In Home Page </li>
+            <li class="steps">At the top in the navbar click on SignIn button </li>
+            <li class="steps">A popup will open-up click on "signIn with google" button at the bottom of pop-up</li>
+          </ul>
+          <strong class="strong">In this way you can easily logIn your account with google. The other method is "email/password".</strong>
+          <ul class="instruction-list howTo-list">
+            
+            <li class="steps">In Home Page </li>
+            <li class="steps">For this first of all click on "SignUp" button in the navbar , give valid email & password</li>
+            <li class="steps">After submission you will be successfully loggedIn</li>
+            <li class="steps">And whenever you will need to signIn you can use this email/password by clicking on "SignIn" button , 
+              enter email/password in the pop-up box & click on "Submit" button.</li>
+          </ul>
+        </p>
+      </div>
+    </main>
+    
+    <script>
+        let hamburger = document.querySelector(".hamburger");
+        hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("clicked");
+        });
+        let projects = document.querySelector(".project-div");
+        projects.addEventListener("click", () => {
+        projects.classList.toggle("sub-projects");
+        });
+    </script>
+  </body>
+</html>

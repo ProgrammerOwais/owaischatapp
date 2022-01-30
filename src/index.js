@@ -40,7 +40,7 @@ let signUpPopup = document.querySelector(".signUpPopup");
 let signUpDiv = document.querySelector(".container2");
 let closeSignIn = document.querySelector(".closeSignIn");
 let closeSignUp = document.querySelector(".closeSignUp");
-console.log(" really 9");
+console.log(" really 10");
 closeSignIn.addEventListener("click", () => {
   console.log("it works");
   signInDiv.classList.toggle("container1-toggle");
@@ -57,7 +57,6 @@ signUpPopup.addEventListener("click", () => {
 });
 
 let hamburger = document.querySelector(".hamburger");
-console.log(hamburger);
 hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("clicked");
 });
@@ -66,7 +65,7 @@ projects.addEventListener("click", () => {
   projects.classList.toggle("sub-projects");
 });
 
-/*************************************************** SignIn/SignUp With Email & Password**************************/
+/*************************************************** SignIn/SignUp With Email & Password************/
 
 function SignUpEP(e) {
   // console.log("Your function is called");
@@ -188,7 +187,7 @@ logOut.addEventListener("click", () => {
 let confirmation = document.querySelector(".confirmation");
 const db = getFirestore();
 
-/************** time function  *****************/
+/************** Time Converting Function  *****************/
 function Timing(time) {
   var hours = time.getHours();
   var minutes = time.getMinutes();
@@ -199,6 +198,7 @@ function Timing(time) {
   var strTime = hours + ":" + minutes + "" + ampm;
   return strTime;
 }
+/************ Automatically checking wether user is logged in or not from cloud firestore */
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     console.log("user data is: ", user);
@@ -214,19 +214,7 @@ onAuthStateChanged(auth, async (user) => {
       displayMessage();
     });
 
-    // let dataTrack = parseInt(querySnapshot._snapshot.docChanges.length);
-
     async function displayMessage() {
-      // let time = new Date();
-      // let dataTrack = Math.round(time.getTime() / 1000);
-      // // console.log("The dataTrack number is :", dataTrack);
-      // var abc = await addDoc(collection(db, "dualchat"), {
-      //   docTrack: dataTrack,
-      //   currentTime: Timing(time),
-      //   name: user.displayName,
-      //   message1: inputText.value,
-      // });
-
       if (inputText.value != "") {
         let time = new Date();
 
@@ -266,7 +254,7 @@ onAuthStateChanged(auth, async (user) => {
         commitList.prepend(li);
         inputText.value = "";
 
-        /************************ lets try update section ***************************/
+        /************************ update section *********************/
         let editBtn = document.createElement("button");
         editBtn.classList.add("editBtn");
         editBtn.innerText = "Edit";
@@ -275,7 +263,7 @@ onAuthStateChanged(auth, async (user) => {
         let insertedText = document.createTextNode(paraText.innerText);
         let input2 = document.createElement("input");
         input2.classList.add("editInput");
-        input2.type = "input";
+        input2.type = "text";
         input2.appendChild(insertedText);
         input2.value = input2.innerText;
         let send = document.createElement("button");
@@ -295,7 +283,8 @@ onAuthStateChanged(auth, async (user) => {
           name: user.displayName,
           message1: paraText.innerText,
         });
-        /********************************* CLICK EVENTS IN APP */
+
+        /*************************** EVENTS IN APP */
 
         deleteMessage.addEventListener("click", () => {
           delMessage(abc.id, p);
@@ -322,8 +311,8 @@ onAuthStateChanged(auth, async (user) => {
             message1: paraText.innerText,
           });
         });
-        /************************************ Reply section *********************************/
 
+        /******************************* Reply section ***************/
         let replyBtn = document.createElement("button");
         replyBtn.classList.add("replyBtn");
         replyBtn.innerText = "Reply";
@@ -426,7 +415,7 @@ onAuthStateChanged(auth, async (user) => {
                 /*********************************** SUB EVENTS IN THE APP *********/
 
                 deleteMessage.addEventListener("click", () => {
-                  delMessage2(abc.id, abc2.id, p);
+                  delSubMessage2(abc.id, abc2.id, p);
                 });
                 editBtn.addEventListener("click", () => {
                   input2.value = paraText.innerText;
@@ -470,28 +459,31 @@ onAuthStateChanged(auth, async (user) => {
         alert(" You didn't commit anything");
       }
     }
-    async function delMessage2(parentDoc, subDoc, p) {
+    /******** delete user own main message */
+    async function delMessage(deldocs, p) {
+      p.remove();
+      await deleteDoc(doc(db, "dualchat2", `${deldocs}`));
+    }
+    /******** delete user own sub/reply message message */
+    async function delSubMessage2(parentDoc, subDoc, p) {
       p.remove();
       await deleteDoc(
         doc(db, "dualchat2", `${parentDoc}`, "subCollection", `${subDoc}`)
       );
     }
-    async function delMessage(deldocs, p) {
-      p.remove();
-      await deleteDoc(doc(db, "dualchat2", `${deldocs}`));
-    }
-    /************************************************************ Getdoc setion ******************************/
-
+    /***************************** Get user messages/docs/info from Firebase ******************/
     const querySnapshot = await getDocs(collection(db, "dualchat2"));
     let docArray = [];
     let track = 0;
     querySnapshot.forEach((trackDocs) => {
+      //store the data in array
       docArray[track] = parseInt(trackDocs.data().docTrack);
       track += 1;
     });
-    docArray.sort((a, b) => a - b);
+    docArray.sort((a, b) => a - b); // arrange the docs in a sequence in an array
     for (let i = 1; i <= querySnapshot._snapshot.docChanges.length; i++) {
       querySnapshot.forEach(async (docmt) => {
+        //only sequence docs will execute in "if".
         if (docArray[i - 1] == docmt.data().docTrack) {
           console.log("document data info is : ", docmt);
           // console.log(
@@ -544,7 +536,7 @@ onAuthStateChanged(auth, async (user) => {
               );
             }
           });
-          /* update section **********/
+          /********** Update Section **********/
           let editBtn = document.createElement("button");
           editBtn.classList.add("editBtn");
           editBtn.innerText = "Edit";
@@ -589,7 +581,7 @@ onAuthStateChanged(auth, async (user) => {
             });
           });
 
-          /************************************ Reply section *********************************/
+          /************************* Reply section ****************************/
 
           const subDocumnt = await getDocs(
             collection(db, "dualchat2", `${docmt.id}`, "subCollection")
@@ -772,7 +764,7 @@ onAuthStateChanged(auth, async (user) => {
                   }
                 });
               }
-
+              // Adding the new messages in reply section in previous get docs
               subSend.addEventListener("click", async () => {
                 let time = new Date();
                 if (input3.value != "") {
@@ -805,7 +797,7 @@ onAuthStateChanged(auth, async (user) => {
                   commitList2.prepend(li);
                   input3.value = "";
 
-                  /************************ lets try update section ***************************/
+                  /***************** Update Section *******************/
                   let editBtn = document.createElement("button");
                   editBtn.classList.add("editBtn");
                   editBtn.innerText = "Edit";
@@ -826,7 +818,7 @@ onAuthStateChanged(auth, async (user) => {
                   p.appendChild(send);
                   input2.style.display = "none";
                   send.style.display = "none";
-                  /*********************** STORING SUB-DATA IN THE DATABASE ******/
+                  /******* STORING SUB-DATA IN THE DATABASE ******/
                   let dataTrack = Math.round(time.getTime() / 1000);
 
                   console.log("The dataTrack number is :", dataTrack);
@@ -843,7 +835,7 @@ onAuthStateChanged(auth, async (user) => {
                   /*********************** Sub Events in the APP ******/
 
                   deleteMessage.addEventListener("click", () => {
-                    delMessage2(docmt.id, abc3.id, p);
+                    delSubMessage2(docmt.id, abc3.id, p);
                   });
                   editBtn.addEventListener("click", () => {
                     input2.value = paraText.innerText;
@@ -885,385 +877,6 @@ onAuthStateChanged(auth, async (user) => {
         // console.log(doc.id, " => ", doc.data());
       });
     }
-    // let counter = querySnapshot._snapshot.docChanges.length;
-    // let overDocs;
-    // setInterval(async () => {
-    //   const querySnapshot2 = await getDocs(collection(db, "dualchat"));
-    //   if (querySnapshot2._snapshot.docChanges.length > counter) {
-    //     console.log("it run the if statement");
-    //     overDocs = querySnapshot2._snapshot.docChanges.length - counter;
-    //     let docArray = [];
-    //     let track = 0;
-    //     querySnapshot2.forEach((trackDocs) => {
-    //       docArray[track] = parseInt(trackDocs.data().docTrack);
-    //       track += 1;
-    //     });
-    //     for (let i = 1; i <= overDocs; i++) {
-    //       // querySnapshot2.forEach(async (docmt) => {
-    //         // if (docArray[-1] == docmt.data().docTrack) {
-    //           // console.log(
-    //           //   "The numbers is :",
-    //           //   docmt.data().docTrack,
-    //           //   " and its value is ",
-    //           //   docmt.data().message1
-    //           // );
-    //           let li = document.createElement("li");
-    //           let p = document.createElement("p");
-    //           let timeDate = document.createElement("span");
-    //           timeDate.classList.add("current-time");
-    //           timeDate.innerText = querySnapshot2[1].data().currentTime;
-    //           let userName = document.createElement("span");
-    //           userName.classList.add("user-name");
-    //           let userNode = document.createTextNode(querySnapshot2[1].data().name);
-    //           userName.appendChild(userNode);
-    //           let paraText = document.createElement("span");
-    //           paraText.classList.add("para-text");
-    //           let deleteMessage = document.createElement("button");
-    //           deleteMessage.classList.add("deleteBtn");
-    //           let delNodeText = document.createTextNode("X");
-    //           deleteMessage.appendChild(delNodeText);
-    //           p.classList.add("commit-text");
-    //           let nodeText = document.createTextNode(querySnapshot2[1].data().message1);
-    //           paraText.appendChild(nodeText);
-    //           if (querySnapshot2[1].data().name == user.displayName) {
-    //             p.style.backgroundColor = "yellow";
-    //           }
-    //           p.appendChild(timeDate);
-    //           p.appendChild(userName);
-    //           p.appendChild(paraText);
-    //           p.appendChild(deleteMessage);
-    //           li.appendChild(p);
-    //           commitList.prepend(li);
-    //           deleteMessage.addEventListener("click", () => {
-    //             delMessage(querySnapshot2[1].id, p);
-    //           });
-    //           /* update section **********/
-    //           let editBtn = document.createElement("button");
-    //           editBtn.classList.add("editBtn");
-    //           editBtn.innerText = "Edit";
-    //           p.appendChild(editBtn);
-    //           // console.log(editBtn);
-    //           let insertedText = document.createTextNode(paraText.innerText);
-    //           let input2 = document.createElement("input");
-    //           input2.classList.add("editInput");
-    //           input2.type = "input";
-    //           input2.appendChild(insertedText);
-    //           input2.value = input2.innerText;
-    //           let send = document.createElement("button");
-    //           send.classList.add("commit-btn2");
-    //           send.innerText = "send";
-    //           p.appendChild(input2);
-    //           p.appendChild(send);
-    //           input2.style.display = "none";
-    //           send.style.display = "none";
-    //           editBtn.addEventListener("click", () => {
-    //             input2.value = paraText.innerText;
-    //             input2.style.display = "inline";
-    //             send.style.display = "inline";
-    //             paraText.style.display = "none";
-    //             editBtn.style.display = "none";
-    //           });
-    //           send.addEventListener("click", async () => {
-    //             let time = new Date();
-    //             paraText.innerText = input2.value;
-    //             input2.style.display = "none";
-    //             send.style.display = "none";
-    //             paraText.style.display = "inline";
-    //             editBtn.style.display = "inline";
-    //             const updateData2 = doc(db, "dualchat", `${querySnapshot2[1].id}`);
-    //             await updateDoc(updateData2, {
-    //               currentTime: Timing(time),
-    //               name: user.displayName,
-    //               message1: paraText.innerText,
-    //             });
-    //           });
-
-    //           /************************************ Reply section *********************************/
-
-    //           const subDocumnt = await getDocs(
-    //             collection(db, "dualchat", `${querySnapshot2[1].id}`, "subCollection")
-    //           );
-    //           let replyBtn = document.createElement("button");
-    //           replyBtn.classList.add("replyBtn");
-    //           replyBtn.innerText = "Reply";
-    //           if (subDocumnt._snapshot.docChanges.length == 1) {
-    //             replyBtn.innerText = "1 Reply";
-    //           }
-    //           if (parseInt(subDocumnt._snapshot.docChanges.length) > 1) {
-    //             replyBtn.innerText = `${subDocumnt._snapshot.docChanges.length} Replies`;
-    //           }
-    //           p.appendChild(replyBtn);
-    //           var childContainer = document.createElement("div");
-    //           childContainer.classList.add("child-container");
-    //           replyBtn.addEventListener("click", async () => {
-    //             // console.log("reply works");
-    //             if (
-    //               li.lastElementChild.classList.contains("child-container") ==
-    //               false
-    //             ) {
-    //               // console.log("it add the div");
-    //               li.appendChild(childContainer);
-
-    //               let input3 = document.createElement("input");
-    //               input3.type = "text";
-    //               input3.classList.add("input3");
-    //               let subSend = document.createElement("button");
-    //               subSend.innerText = "send";
-    //               subSend.classList.add("subSend");
-    //               let hideContainer = document.createElement("span");
-    //               hideContainer.innerText = "X";
-    //               hideContainer.classList.add("minimize");
-    //               hideContainer.addEventListener("click", () => {
-    //                 childContainer.classList.toggle("child-container-toggle");
-    //               });
-    //               childContainer.appendChild(hideContainer);
-    //               childContainer.appendChild(input3);
-    //               childContainer.appendChild(subSend);
-    //               let commitList2 = document.createElement("ul");
-    //               childContainer.appendChild(commitList2);
-
-    //               let docArray = [];
-    //               let track = 0;
-    //               subDocumnt.forEach((trackDocs) => {
-    //                 docArray[track] = parseInt(trackDocs.data().docTrack);
-    //                 track += 1;
-    //               });
-    //               docArray.sort((a, b) => a - b);
-    //               console.log(
-    //                 "The docs inside is : ",
-    //                 subDocumnt._snapshot.docChanges.length
-    //               );
-    //               for (
-    //                 let j = 1;
-    //                 j <= subDocumnt._snapshot.docChanges.length;
-    //                 j++
-    //               ) {
-    //                 subDocumnt.forEach((sDocs) => {
-    //                   if (docArray[j - 1] == sDocs.data().docTrack) {
-    //                     console.log(
-    //                       "The numbers is :",
-    //                       sDocs.data().docTrack,
-    //                       " and its value is ",
-    //                       sDocs.data().message1
-    //                     );
-    //                     let li = document.createElement("li");
-    //                     li.classList.add("list-Item");
-    //                     let p = document.createElement("p");
-    //                     let timeDate = document.createElement("span");
-    //                     timeDate.classList.add("current-time2");
-    //                     timeDate.innerText = sDocs.data().currentTime;
-    //                     let userName = document.createElement("span");
-    //                     userName.classList.add("user-name");
-    //                     let userNode = document.createTextNode(
-    //                       sDocs.data().name
-    //                     );
-    //                     userName.appendChild(userNode);
-    //                     let paraText = document.createElement("span");
-    //                     paraText.classList.add("para-text");
-    //                     let deleteMessage = document.createElement("button");
-    //                     deleteMessage.classList.add("deleteBtn");
-    //                     let delNodeText = document.createTextNode("X");
-    //                     deleteMessage.appendChild(delNodeText);
-    //                     p.classList.add("commit-text");
-    //                     p.classList.add("commit-text2");
-    //                     let nodeText = document.createTextNode(
-    //                       sDocs.data().message1
-    //                     );
-    //                     paraText.appendChild(nodeText);
-    //                     p.appendChild(timeDate);
-    //                     p.appendChild(userName);
-    //                     p.appendChild(paraText);
-    //                     p.appendChild(deleteMessage);
-    //                     li.appendChild(p);
-    //                     commitList2.prepend(li);
-    //                     deleteMessage.addEventListener("click", () => {
-    //                       delMessage2(querySnapshot2[1].id, sDocs.id, p);
-    //                     });
-
-    //                     let editBtn = document.createElement("button");
-    //                     editBtn.classList.add("editBtn");
-    //                     editBtn.innerText = "Edit";
-    //                     p.appendChild(editBtn);
-    //                     // console.log(editBtn);
-    //                     let insertedText = document.createTextNode(
-    //                       paraText.innerText
-    //                     );
-    //                     let input2 = document.createElement("input");
-    //                     input2.classList.add("editInput");
-    //                     input2.type = "input";
-    //                     input2.appendChild(insertedText);
-    //                     input2.value = input2.innerText;
-    //                     let send = document.createElement("button");
-    //                     send.classList.add("commit-btn2");
-    //                     send.innerText = "send";
-    //                     p.appendChild(input2);
-    //                     p.appendChild(send);
-    //                     input2.style.display = "none";
-    //                     send.style.display = "none";
-    //                     editBtn.addEventListener("click", () => {
-    //                       input2.value = paraText.innerText;
-    //                       input2.style.display = "inline";
-    //                       send.style.display = "inline";
-    //                       paraText.style.display = "none";
-    //                       editBtn.style.display = "none";
-    //                     });
-    //                     send.addEventListener("click", async () => {
-    //                       let time = new Date();
-    //                       paraText.innerText = input2.value;
-    //                       timeDate.innerText = Timing(time);
-    //                       input2.style.display = "none";
-    //                       send.style.display = "none";
-    //                       paraText.style.display = "inline";
-    //                       editBtn.style.display = "inline";
-    //                       const updateData = doc(
-    //                         db,
-    //                         "dualchat",
-    //                         `${querySnapshot2[1].id}`,
-    //                         "subCollection",
-    //                         `${sDocs.id}`
-    //                       );
-    //                       await updateDoc(updateData, {
-    //                         currentTime: timeDate.innerText,
-    //                         name: user.displayName,
-    //                         message1: paraText.innerText,
-    //                       });
-    //                       childContainer.appendChild(commitList2);
-    //                       input3.value = "";
-    //                     });
-    //                   }
-    //                 });
-    //               }
-
-    //               subSend.addEventListener("click", async () => {
-    //                 let time = new Date();
-    //                 if (input3.value != "") {
-    //                   let li = document.createElement("li");
-    //                   li.classList.add("list-Item");
-    //                   let p = document.createElement("p");
-    //                   let timeDate = document.createElement("span");
-    //                   timeDate.classList.add("current-time2");
-    //                   timeDate.innerText = Timing(time);
-    //                   let userName = document.createElement("span");
-    //                   userName.classList.add("user-name");
-    //                   let userNode = document.createTextNode(user.displayName);
-    //                   userName.appendChild(userNode);
-    //                   let paraText = document.createElement("span");
-    //                   paraText.classList.add("para-text");
-    //                   let deleteMessage = document.createElement("button");
-    //                   deleteMessage.classList.add("deleteBtn");
-    //                   let delNodeText = document.createTextNode("X");
-    //                   deleteMessage.appendChild(delNodeText);
-    //                   p.classList.add("commit-text");
-    //                   p.classList.add("commit-text2");
-    //                   let nodeText = document.createTextNode(input3.value);
-    //                   paraText.appendChild(nodeText);
-    //                   p.appendChild(timeDate);
-    //                   p.appendChild(userName);
-    //                   p.appendChild(paraText);
-    //                   p.appendChild(deleteMessage);
-    //                   li.appendChild(p);
-    //                   commitList2.prepend(li);
-    //                   input3.value = "";
-
-    //                   /************************ lets try update section ***************************/
-    //                   let editBtn = document.createElement("button");
-    //                   editBtn.classList.add("editBtn");
-    //                   editBtn.innerText = "Edit";
-    //                   p.appendChild(editBtn);
-    //                   // console.log(editBtn);
-    //                   let insertedText = document.createTextNode(
-    //                     paraText.innerText
-    //                   );
-    //                   let input2 = document.createElement("input");
-    //                   input2.classList.add("editInput");
-    //                   input2.type = "input";
-    //                   input2.appendChild(insertedText);
-    //                   input2.value = input2.innerText;
-    //                   let send = document.createElement("button");
-    //                   send.classList.add("commit-btn2");
-    //                   send.innerText = "send";
-    //                   p.appendChild(input2);
-    //                   p.appendChild(send);
-    //                   input2.style.display = "none";
-    //                   send.style.display = "none";
-    //                   /*********************** STORING SUB-DATA IN THE DATABASE ******/
-    //                   let dataTrack = Math.round(time.getTime() / 1000);
-
-    //                   console.log("The dataTrack number is :", dataTrack);
-    //                   var abc3 = await addDoc(
-    //                     collection(
-    //                       db,
-    //                       "dualchat",
-    //                       `${querySnapshot2[1].id}`,
-    //                       "subCollection"
-    //                     ),
-    //                     {
-    //                       docTrack: dataTrack,
-    //                       currentTime: Timing(time),
-    //                       name: user.displayName,
-    //                       message1: paraText.innerText,
-    //                     }
-    //                   );
-    //                   /*********************** Sub Events in the APP ******/
-
-    //                   deleteMessage.addEventListener("click", () => {
-    //                     delMessage2(querySnapshot2[1].id, abc3.id, p);
-    //                   });
-    //                   editBtn.addEventListener("click", () => {
-    //                     input2.value = paraText.innerText;
-    //                     input2.style.display = "inline";
-    //                     send.style.display = "inline";
-    //                     paraText.style.display = "none";
-    //                     editBtn.style.display = "none";
-    //                   });
-    //                   send.addEventListener("click", async () => {
-    //                     let time = new Date();
-    //                     paraText.innerText = input2.value;
-    //                     timeDate.innerText = Timing(time);
-    //                     input2.style.display = "none";
-    //                     send.style.display = "none";
-    //                     paraText.style.display = "inline";
-    //                     editBtn.style.display = "inline";
-    //                     const updateData = doc(
-    //                       db,
-    //                       "dualchat",
-    //                       `${querySnapshot2[1].id}`,
-    //                       "subCollection",
-    //                       `${abc3.id}`
-    //                     );
-    //                     await updateDoc(updateData, {
-    //                       currentTime: timeDate.innerText,
-    //                       name: user.displayName,
-    //                       message1: paraText.innerText,
-    //                     });
-    //                     childContainer.appendChild(commitList2);
-    //                   });
-    //                 } else {
-    //                   alert("You didn't enter any value in the box");
-    //                 }
-    //               });
-    //             }
-    //             childContainer.classList.toggle("child-container-toggle");
-    //           });
-
-    //         // console.log(doc.id, " => ", doc.data());
-    //       // });
-    //     }
-    //     counter = querySnapshot2._snapshot.docChanges.length;
-    //   }
-    //   // console.log("The length of previous docs is : ", counter);
-    //   // console.log(
-    //   //   "The length of the new docs is : ",
-    //   //   querySnapshot2._snapshot.docChanges.length
-    //   // );
-    //   // if (querySnapshot2._snapshot.docChanges.length > counter) {
-    //   //   console.log(
-    //   //     "The increased docs is : ",
-    //   //     querySnapshot2._snapshot.docChanges.length - counter
-    //   //   );
-    //   // counter = querySnapshot2._snapshot.docChanges.length;
-    //   // }
-    // }, 2000);
   } else {
     signInPopup.style.display = "inline";
     signUpPopup.style.display = "inline";
