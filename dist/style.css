@@ -7,23 +7,95 @@ html {
   margin: 0;
   scroll-behavior: smooth;
 }
+html::-webkit-scrollbar {
+  background-color: rgb(64, 126, 240);
+  width: 1vw;
+}
+html::-webkit-scrollbar-thumb {
+  background-color: yellow;
+  border-radius: 30px;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 0, 0.799);
+}
+html::-webkit-scrollbar-track {
+  background-color: darkslategray;
+  background-color: rgb(64, 126, 240);
+  border-radius: 30px;
+}
 :root {
   --bodyColor: rgba(108, 101, 138, 0.322);
+  --bodyColor: cornflowerblue;
   /* --bodyColor: rgb(127, 202, 180); */
   --primaryHeading: rgb(105, 101, 101);
-  --primaryHeading: rgba(34, 19, 5, 0.826);
+  /* --primaryHeading: rgba(34, 19, 5, 0.826); */
+  --primaryHeading: yellow;
   --headerBg: rgba(54, 52, 52, 0.562);
   /* --headerBg: rgb(12, 138, 241); */
   /* --headerBg: blue; */
   --textColor: rgba(12, 12, 12, 0.888);
+  --textColor: white;
+  --borderBg: rgba(27, 26, 26, 0.116);
   --borderBg: rgba(27, 26, 26, 0.116);
   --ordinaryColor: rgba(12, 12, 12, 0.888);
-  --ordinaryColor: rgba(59, 49, 29, 0.826);
+  /* --ordinaryColor: rgba(59, 49, 29, 0.826); */
+  --ordinaryColor: linen;
 }
 body {
   background-color: var(--bodyColor);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  /* background-image: linear-gradient(to right, #ddd6f3, #faaca8); */
+  /* background-image: linear-gradient(to right, #36d1dc, #5b86e5); */
+  /* background-image: linear-gradient(to right, #141e30, #243b55); */
+  /* background-image: linear-gradient(to right, #ff7e5f, #feb47b); */
 }
+/**************************** INTRO SECTION **********************/
+
+.intro-div {
+  background-color: var(--bodyColor);
+  position: absolute;
+  width: 99vw;
+  height: 100vh;
+  z-index: 10;
+}
+.intro {
+  color: Linen;
+  font-size: 6rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  text-align: center;
+  /* box-shadow: 0 0 2px 1px rgba(17, 17, 17, 0.356); */
+  border-radius: 5px;
+  padding: 1rem;
+}
+.intro-char {
+  opacity: 0;
+  position: relative;
+  top: 15px;
+  left: 20px;
+  transition: all 500ms;
+}
+.intro-char2 {
+  opacity: 1;
+  top: 0px;
+  left: 0;
+}
+@media (max-width: 768px) {
+  .intro {
+    width: 500px;
+    font-size: 4rem;
+  }
+}
+@media (max-width: 520px) {
+  .intro {
+    width: 350px;
+    font-size: 2rem;
+  }
+}
+/**************************** END INTRO SECTION **********************/
 .chatFresh-div {
   width: 150px;
   display: flex;
@@ -211,6 +283,8 @@ h2 {
   margin-bottom: -0.3rem;
   padding-bottom: 0;
   font-family: Arial, Helvetica, sans-serif;
+
+  text-shadow: 0.5px 0.5px black;
 }
 
 .project-div {
@@ -376,6 +450,7 @@ input {
   margin: 0.5rem auto;
   margin-top: 0.1rem;
   padding: 0.5rem;
+  text-shadow: 0.4px 0.4px 2px rgba(0, 0, 0, 0.505);
 }
 .instruction-list {
   padding-left: 1.5rem;
@@ -400,6 +475,18 @@ strong {
 strong,
 .para {
   color: var(--textColor);
+}
+strong {
+  font-size: 1.3rem;
+  color: yellow;
+}
+.first-word {
+  text-transform: uppercase;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
 .input-div {
@@ -495,7 +582,7 @@ li {
   font-weight: 700;
   color: var(--ordinaryColor);
   font-size: 0.9rem;
-  border-bottom: 0.5px dotted black;
+  border-bottom: 0.5px solid yellow;
 }
 
 .editBtn {
@@ -624,7 +711,6 @@ li {
   height: 30px;
 }
 .subSend {
-  background-color: green;
   background-color: rgb(121, 119, 124);
   color: white;
   padding: 0.2rem;
@@ -632,6 +718,10 @@ li {
   font-size: 1.1rem;
   width: 15%;
   cursor: pointer;
+}
+.subSend:active {
+  border-bottom: 0.7px solid rgba(0, 0, 0, 0.575);
+  border-right: 0.5px solid rgba(0, 0, 0, 0.575);
 }
 footer {
   /* border: 1px solid red; */
@@ -927,6 +1017,14 @@ footer {
   .para {
     font-size: 0.95rem;
     line-height: 1.3;
+  }
+  .para {
+    text-shadow: none;
+    letter-spacing: 0.5px;
+  }
+  .first-word {
+    font-size: 1.1rem;
+    font-weight: 600;
   }
   .topic-container {
     flex-direction: column;
