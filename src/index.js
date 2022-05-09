@@ -44,6 +44,7 @@ let introDiv = document.querySelector(".intro-div");
 main.style.display = "none";
 header.style.display = "none";
 let intro = document.querySelector(".intro");
+intro.innerText = "Welcome to BSCS2-M1 IT Topics";
 intro.innerHTML = intro.textContent.replace(
   /\S/g,
   "<span class = 'intro-char'>$&</span>"
@@ -63,19 +64,20 @@ let timeline = setInterval(() => {
   }
 }, 100);
 /************************************************ Header section */
+
 let signInPopup = document.querySelector(".signInPopup");
 let signInDiv = document.querySelector(".container1");
 let signUpPopup = document.querySelector(".signUpPopup");
 let signUpDiv = document.querySelector(".container2");
 let closeSignIn = document.querySelector(".closeSignIn");
 let closeSignUp = document.querySelector(".closeSignUp");
-console.log(" really 22");
+// console.log(" really 32");
 let hamburger = document.querySelector(".hamburger");
 hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("clicked");
 });
 closeSignIn.addEventListener("click", () => {
-  console.log("it works");
+  // console.log("it works");
   signInDiv.classList.toggle("container1-toggle");
 });
 closeSignUp.addEventListener("click", () => {
@@ -123,8 +125,8 @@ function SignUpEP(e) {
       const errorMessage = error.message;
 
       alert(errorMessage);
-      // console.log("the errors is : ", errorMessage);
-      // console.log("The code error is : ", errorCode);
+      console.log("the errors is : ", errorMessage);
+      console.log("The code error is : ", errorCode);
       // ..
     });
 
@@ -233,7 +235,7 @@ function Timing(time) {
 function userData() {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      console.log("the functio is first time exectued");
+      // console.log("the functio is first time exectued");
       logOut.style.display = "inline";
       signInPopup.style.display = "none";
       signUpPopup.style.display = "none";
@@ -259,7 +261,7 @@ function userData() {
           let timeDate = document.createElement("span");
           timeDate.classList.add("current-time");
           timeDate.innerText = Timing(time);
-          console.log("the time is : ", timeDate);
+          // console.log("the time is : ", timeDate);
           let userName = document.createElement("span");
           userName.classList.add("user-name");
           let userNode = document.createTextNode(user.displayName);
@@ -311,7 +313,7 @@ function userData() {
           /*************************** STORING DATA IN DATABASE ******/
           let dataTrack = Math.round(time.getTime() / 1000);
           // console.log("The dataTrack number is :", dataTrack);
-          var abc = await addDoc(collection(db, "dualchat2"), {
+          var abc = await addDoc(collection(db, "chatting"), {
             docTrack: dataTrack,
             currentTime: Timing(time),
             userEmail: user.email,
@@ -339,7 +341,7 @@ function userData() {
             send.style.display = "none";
             paraText.style.display = "inline";
             editBtn.style.display = "inline";
-            const updateData = doc(db, "dualchat2", `${abc.id}`);
+            const updateData = doc(db, "chatting", `${abc.id}`);
             await updateDoc(updateData, {
               currentTime: timeDate.innerText,
               name: user.displayName,
@@ -358,7 +360,7 @@ function userData() {
             if (
               li.lastElementChild.classList.contains("child-container") == false
             ) {
-              console.log("it add the div");
+              // console.log("it add the div");
               li.appendChild(childContainer);
               let input3 = document.createElement("input");
               input3.type = "text";
@@ -381,7 +383,7 @@ function userData() {
                 replyMessage();
               });
               async function replyMessage() {
-                console.log("the function is executed");
+                // console.log("the function is executed");
                 let time = new Date();
 
                 if (input3.value != "") {
@@ -437,9 +439,9 @@ function userData() {
                   send.style.display = "none";
                   /*********************************** STORING SUB-DATA IN DATABASE *********/
                   let dataTrack = Math.round(time.getTime() / 1000);
-                  console.log("The dataTrack number is :", dataTrack);
+                  // console.log("The dataTrack number is :", dataTrack);
                   var abc2 = await addDoc(
-                    collection(db, "dualchat2", `${abc.id}`, "subCollection"),
+                    collection(db, "chatting", `${abc.id}`, "subCollection"),
                     {
                       docTrack: dataTrack,
                       currentTime: Timing(time),
@@ -471,7 +473,7 @@ function userData() {
                     editBtn.style.display = "inline";
                     const updateData = doc(
                       db,
-                      "dualchat2",
+                      "chatting",
                       `${abc.id}`,
                       "subCollection",
                       `${abc2.id}`
@@ -500,17 +502,17 @@ function userData() {
       /******** delete user own main message */
       async function delMessage(deldocs, p) {
         p.remove();
-        await deleteDoc(doc(db, "dualchat2", `${deldocs}`));
+        await deleteDoc(doc(db, "chatting", `${deldocs}`));
       }
       /******** delete user own sub/reply message message */
       async function delSubMessage2(parentDoc, subDoc, p) {
         p.remove();
         await deleteDoc(
-          doc(db, "dualchat2", `${parentDoc}`, "subCollection", `${subDoc}`)
+          doc(db, "chatting", `${parentDoc}`, "subCollection", `${subDoc}`)
         );
       }
       /***************************** Get user messages/docs/info from Firebase ******************/
-      const querySnapshot = await getDocs(collection(db, "dualchat2"));
+      const querySnapshot = await getDocs(collection(db, "chatting"));
       let docArray = [];
       let track = 0;
       querySnapshot.forEach((trackDocs) => {
@@ -567,7 +569,7 @@ function userData() {
             deleteMessage.addEventListener("click", async () => {
               if (user.email == docmt.data().userEmail) {
                 p.remove();
-                await deleteDoc(doc(db, "dualchat2", `${docmt.id}`));
+                await deleteDoc(doc(db, "chatting", `${docmt.id}`));
               } else {
                 alert(
                   "You don't have a permission to delete other users message"
@@ -613,7 +615,7 @@ function userData() {
               send.style.display = "none";
               paraText.style.display = "inline";
               editBtn.style.display = "inline";
-              const updateData2 = doc(db, "dualchat2", `${docmt.id}`);
+              const updateData2 = doc(db, "chatting", `${docmt.id}`);
               await updateDoc(updateData2, {
                 currentTime: Timing(time),
                 name: user.displayName,
@@ -624,7 +626,7 @@ function userData() {
             /************************* Reply section ****************************/
 
             const subDocumnt = await getDocs(
-              collection(db, "dualchat2", `${docmt.id}`, "subCollection")
+              collection(db, "chatting", `${docmt.id}`, "subCollection")
             );
             let replyBtn = document.createElement("button");
             replyBtn.classList.add("replyBtn");
@@ -672,10 +674,10 @@ function userData() {
                   track += 1;
                 });
                 docArray.sort((a, b) => a - b);
-                console.log(
-                  "The docs inside is : ",
-                  subDocumnt._snapshot.docChanges.length
-                );
+                // console.log(
+                //   "The docs inside is : ",
+                //   subDocumnt._snapshot.docChanges.length
+                // );
                 for (
                   let j = 1;
                   j <= subDocumnt._snapshot.docChanges.length;
@@ -683,12 +685,12 @@ function userData() {
                 ) {
                   subDocumnt.forEach((sDocs) => {
                     if (docArray[j - 1] == sDocs.data().docTrack) {
-                      console.log(
-                        "The numbers is :",
-                        sDocs.data().docTrack,
-                        " and its value is ",
-                        sDocs.data().message1
-                      );
+                      // console.log(
+                      //   "The numbers is :",
+                      //   sDocs.data().docTrack,
+                      //   " and its value is ",
+                      //   sDocs.data().message1
+                      // );
                       let li = document.createElement("li");
                       li.classList.add("list-Item");
                       let p = document.createElement("p");
@@ -734,7 +736,7 @@ function userData() {
                           await deleteDoc(
                             doc(
                               db,
-                              "dualchat2",
+                              "chatting",
                               `${docmt.id}`,
                               "subCollection",
                               `${sDocs.id}`
@@ -790,7 +792,7 @@ function userData() {
                         editBtn.style.display = "inline";
                         const updateData = doc(
                           db,
-                          "dualchat2",
+                          "chatting",
                           `${docmt.id}`,
                           "subCollection",
                           `${sDocs.id}`
@@ -863,11 +865,11 @@ function userData() {
                     /******* STORING SUB-DATA IN THE DATABASE ******/
                     let dataTrack = Math.round(time.getTime() / 1000);
 
-                    console.log("The dataTrack number is :", dataTrack);
+                    // console.log("The dataTrack number is :", dataTrack);
                     var abc3 = await addDoc(
                       collection(
                         db,
-                        "dualchat2",
+                        "chatting",
                         `${docmt.id}`,
                         "subCollection"
                       ),
@@ -901,7 +903,7 @@ function userData() {
                       editBtn.style.display = "inline";
                       const updateData = doc(
                         db,
-                        "dualchat2",
+                        "chatting",
                         `${docmt.id}`,
                         "subCollection",
                         `${abc3.id}`

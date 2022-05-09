@@ -26,6 +26,7 @@ html::-webkit-scrollbar-track {
 :root {
   --bodyColor: rgba(108, 101, 138, 0.322);
   --bodyColor: cornflowerblue;
+  --lightBodyColor: rgb(160, 187, 237);
   /* --bodyColor: rgb(127, 202, 180); */
   --primaryHeading: rgb(105, 101, 101);
   /* --primaryHeading: rgba(34, 19, 5, 0.826); */
@@ -112,19 +113,26 @@ body {
   text-align: center;
   background-color: var(--headerBg);
   color: white;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
+  border: 1px solid transparent;
 }
 .chat {
+  border: none;
   padding: 0;
+  border-radius: 0.3rem;
   background-color: var(--headerBg);
 }
 .chat-link {
   background-color: transparent;
   text-decoration: none;
   color: white;
-  /* border: 1px solid red; */
+  border: 1px solid transparent;
   font-size: 1.2rem;
   padding: 0.3rem 0.5rem;
+}
+.fresh:active,
+.chat-link:active {
+  border: 1.3px solid var(--headerBg);
 }
 
 header {
@@ -689,14 +697,15 @@ li {
 .child-container {
   display: none;
   position: relative;
-  /* border: 1px solid rgb(49, 48, 48); */
+  border: 1px solid var(--lightBodyColor);
   width: 45%;
   height: 250px;
   margin-top: 0rem;
   border-radius: 0.3rem;
+  padding-left: 0.3rem;
   overflow-y: auto;
-  box-shadow: inset 1px 1px 5px var(--bodyColor),
-    inset -1px 0px 5px var(--bodyColor);
+  box-shadow: inset 1px 1px 5px var(--LightBodyColor),
+    inset -1px 0px 5px var(--lightBodyColor);
 }
 .child-container-toggle {
   display: block;
@@ -718,6 +727,7 @@ li {
   font-size: 1.1rem;
   width: 15%;
   cursor: pointer;
+  border: none;
 }
 .subSend:active {
   border-bottom: 0.7px solid rgba(0, 0, 0, 0.575);
@@ -1132,6 +1142,7 @@ footer {
   }
 
   .child-container {
+    padding-left: 0rem;
     width: 95%;
     height: 200px;
   }
